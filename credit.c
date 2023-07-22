@@ -5,7 +5,7 @@ int main(void)
 {
 
     // User input card number
-
+    
     long number = get_long("Number: ");
 
     // position of a digit
@@ -15,6 +15,7 @@ int main(void)
     int firsttwodigits = 0;
     int firstdigit = 0;
 
+    
     // validation check
 
     for (long i = number; i > 0; i /= 10)
@@ -49,6 +50,8 @@ int main(void)
     }
 
     int totalsum = sumodd + sumeven;
+
+    
     // print result
 
     printf("position: %d\n", position);
