@@ -3,70 +3,47 @@
 
 int main(void)
 {
-
-    // User input card number
-    
+    // Get user input card number
     long number = get_long("Number: ");
 
-    // position of a digit
-    int position = 1;
     int sumodd = 0;
     int sumeven = 0;
-    int firsttwodigits = 0;
-    int firstdigit = 0;
+    int position = 0;
 
-    
-    // validation check
-
-    for (long i = number; i > 0; i /= 10)
+    while (number > 0)
     {
+        int digit = number % 10;
+        number /= 10;
 
-        if (i < 100 && i > 9)
-        {
-            firsttwodigits = i;
-        }
-        if (i < 10)
-        {
-            firstdigit = i;
-        }
-
-
-        int digit = i % 10;
+        position++;
 
         if (position % 2 == 0)
         {
-
             int multiple = 2 * digit;
             sumeven += multiple / 10 + multiple % 10;
-
-
         }
         else
         {
             sumodd += digit;
         }
-
-        position++;
     }
 
     int totalsum = sumodd + sumeven;
 
-    
-    // print result
-
-    printf("position: %d\n", position);
+    // Determine card type
+    int firstdigit = number;
 
     if (totalsum % 10 == 0)
     {
-        if ((firstdigit == 4 && position == 14) || (firstdigit == 4 && position == 17))
+        if ((firstdigit == 4 && (position == 13 || position == 16)))
         {
             printf("VISA\n");
         }
-        else if (firsttwodigits == 34 || firsttwodigits == 37)
+        else if (position == 15 && (firstdigit == 34 || firstdigit == 37))
         {
             printf("AMEX\n");
         }
-        else if (firsttwodigits >= 51 && firsttwodigits <= 55)
+        else if (position == 16 && (firstdigit >= 51 && firstdigit <= 55))
         {
             printf("MASTERCARD\n");
         }
@@ -79,5 +56,4 @@ int main(void)
     {
         printf("INVALID\n");
     }
-
 }
